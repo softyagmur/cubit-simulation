@@ -1,0 +1,1 @@
+type Qubit = [number, number];
