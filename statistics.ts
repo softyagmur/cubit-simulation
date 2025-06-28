@@ -17,8 +17,8 @@ function measure(qubit: Qubit): 0 | 1 {
 }
 
 // Simulation
-const trials = config?.number_of_qubit_simulation_trials;
-let counts = { 0: 0, 1: 0 };
+const trials: number = config.number_of_qubit_simulation_trials ?? 1000;
+const counts: { [key in 0 | 1]: number } = { 0: 0, 1: 0 };
 
 for (let i = 0; i < trials; i++) {
   let qubit: Qubit = [1, 0]; // |0⟩
@@ -28,5 +28,9 @@ for (let i = 0; i < trials; i++) {
 }
 
 console.log(`Total ${trials} trial!`);
-console.log(`0 number of times measured ${trials}/${counts[0]}`);
-console.log(`1 number of times measured ${trials}/${counts[1]}`);
+console.log(
+  `0 number of times measured (${((counts[0] / trials) * 100).toFixed(2)}%)`
+);
+console.log(
+  `1 number of times measured (${((counts[1] / trials) * 100).toFixed(2)}%)`
+);
